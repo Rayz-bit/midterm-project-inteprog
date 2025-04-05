@@ -69,14 +69,22 @@
             cin.ignore();
             cin.get();
         }
-
+        
+        string toLower(const string& str) {
+            string lowerStr = str;
+            for (char& c : lowerStr) c = tolower(c);
+            return lowerStr;
+        }
+        
         bool isDuplicateID(const string& id) {
+            string loweredID = toLower(id);
             for (int i = 0; i < bookCount; i++) {
-                if (books[i].getID() == id)
+                if (toLower(books[i].getID()) == loweredID)
                     return true;
             }
             return false;
         }
+        
 
         int findBookIndex(const string& id) {
             for (int i = 0; i < bookCount; i++) {
